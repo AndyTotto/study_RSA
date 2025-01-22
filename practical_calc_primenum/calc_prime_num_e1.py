@@ -17,17 +17,11 @@ def calc_eratosthenes(list_prime_num):
 
     target_index = 0
     while True:
-        temp_list = [] #リスト内包表記で簡略化できそう
         target_num = list_prime_num[target_index]
         if list_prime_num[target_index] > loop_limit:
             return list_prime_num
         
-        temp_list.append(target_num)
-        for num in list_prime_num:
-            if num % target_num != 0:
-                temp_list.append(num)
-        
-        list_prime_num = temp_list
+        list_prime_num = [num for num in list_prime_num if num == target_num or num % target_num != 0]
         target_index = target_index + 1
             
 
