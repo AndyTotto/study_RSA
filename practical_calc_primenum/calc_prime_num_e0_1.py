@@ -2,12 +2,10 @@ import datetime
 
 # input
 upper_limit_num = 1000000
-loop_limit = upper_limit_num ** 0.5
 
 def calc_prime_num(upper_limit_num):
-    list_prime_num = []
-    for input_num in range(2, upper_limit_num+1):
-        list_prime_num.append(input_num)
+
+    list_prime_num = list(range(2, upper_limit_num+1))
 
     list_prime_num = calc_eratosthenes(list_prime_num)
 
@@ -15,7 +13,9 @@ def calc_prime_num(upper_limit_num):
 
 def calc_eratosthenes(list_prime_num):
 
+    loop_limit = upper_limit_num ** 0.5
     target_index = 0
+    
     while True:
         target_num = list_prime_num[target_index]
         if list_prime_num[target_index] > loop_limit:
