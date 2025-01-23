@@ -1,7 +1,7 @@
 import datetime
 
 # input
-upper_limit_num = 1000000
+upper_limit_num = 10 #00000
 
 def calc_prime_num(upper_limit_num):
     list_prime_num = [2]
