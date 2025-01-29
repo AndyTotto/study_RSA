@@ -2,9 +2,9 @@ import math
 import func
 
 # input
-n = 58527397
-e = 58512095
-C = 17236250
+n = 3283716497
+e = 3283583855
+C = 2827144907
 
 def calc_pq(n):
     num_limit = int(math.sqrt(n))
@@ -20,11 +20,16 @@ def calc_M(p, q, n, e, C):
     if n != p * q:
         print("error")
         return None
-    m = 1
-    while(True):
+    '''
+    m = 1 #これはブログに残したい
+    while True:
         if m*(p-1)*(q-1) % e == e-1:
             break
         m = m + 1
+    '''
+    phi_n = (p-1)*(q-1)
+    inverse_phi = pow(phi_n, -1, e)
+    m = ((e-1)*inverse_phi) % e
     d = (m*(p-1)*(q-1) + 1) // e
     M = pow(C, d, n)
     
@@ -38,16 +43,6 @@ def num_to_str(M):
         M = M.zfill(len(M)+1)
     
     message_list = []
-    '''
-    for char_num in range(len(M)//2):
-        slice_start = char_num*2
-        slice_end = slice_start + 2
-
-        char_slice = M[slice_start:slice_end]
-
-        char = strings_list[int(char_slice)]
-        message_list.append(char)
-    '''
     for char_num in range(0, len(M), 2):
         char_slice = M[char_num:char_num+2]
         char = strings_list[int(char_slice)]
