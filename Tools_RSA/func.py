@@ -33,7 +33,7 @@ def calc_prime_num(input_num):
     target_num = 2
     while target_num < loop_limit:
         # 素数(=True)の場合 → 倍数をFalseに
-        if list_sieve[target_num] == True:
+        if list_sieve[target_num]:
             for num in range(target_num*target_num, len(list_sieve), target_num):
                 list_sieve[num] = False
         target_num = target_num + 1

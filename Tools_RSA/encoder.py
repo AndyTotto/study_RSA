@@ -11,12 +11,17 @@ def str_to_num(message):
     strings_list = func.make_str_list()
 
     message_num_list = []
+    '''
     for char_num in range(len(message)):
         slice_start = char_num
         slice_end = slice_start + 1
 
         char_slice = message[slice_start:slice_end]
         char_num = str(strings_list.index(char_slice)).zfill(2)
+        message_num_list.append(char_num)
+    '''
+    for ch in message:
+        char_num = str(strings_list.index(ch)).zfill(2)
         message_num_list.append(char_num)
 
     message_num = "".join(message_num_list)
@@ -42,4 +47,6 @@ if __name__ == "__main__":
     M = str_to_num(message)
     p, q, n, e = calc_pqe(M)
     C = calc_C(M, n, e)
-    print(n, e, C)
+    print("n = ", n)
+    print("e = ", e)
+    print("C = ", C)

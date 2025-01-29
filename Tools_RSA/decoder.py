@@ -2,9 +2,9 @@ import math
 import func
 
 # input
-n = 74985217
-e = 74967855
-C = 40593472
+n = 58527397
+e = 58512095
+C = 17236250
 
 def calc_pq(n):
     num_limit = int(math.sqrt(n))
@@ -19,6 +19,7 @@ def calc_pq(n):
 def calc_M(p, q, n, e, C):
     if n != p * q:
         print("error")
+        return None
     m = 1
     while(True):
         if m*(p-1)*(q-1) % e == e-1:
@@ -32,20 +33,23 @@ def calc_M(p, q, n, e, C):
 def num_to_str(M):
     M = str(M)
     strings_list = func.make_str_list()
-    print(len(M))
 
     if len(M) % 2 != 0:
         M = M.zfill(len(M)+1)
     
-    print(M)
-
     message_list = []
+    '''
     for char_num in range(len(M)//2):
         slice_start = char_num*2
         slice_end = slice_start + 2
 
         char_slice = M[slice_start:slice_end]
 
+        char = strings_list[int(char_slice)]
+        message_list.append(char)
+    '''
+    for char_num in range(0, len(M), 2):
+        char_slice = M[char_num:char_num+2]
         char = strings_list[int(char_slice)]
         message_list.append(char)
     message = "".join(message_list)
