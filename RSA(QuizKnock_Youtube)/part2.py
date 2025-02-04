@@ -8,23 +8,24 @@ c = 904
 
 def calc_message(p, q, e, c):
     n = p * q
+    phi = (p-1)*(q-1)
 
+    # m(p-1)(q-1)≡-1(mod e)を満たすmを求める
     num = 1
-    while (True):
-        target_num = 79 * num - 1
-        #print("target number is " + str(target_num))
-        if target_num % 2520 == 0:
-            m = target_num / 2520
+    while True:
+        target_num = e * num - 1
+        if target_num % phi == 0:
+            m = target_num // phi
             print("search complete.")
             break
         num = num + 1
-
     print("m = ", m)
 
-    d = (m * (p-1) * (q-1) + 1) / e
+    # mからdを計算
+    d = (m * (p-1) * (q-1) + 1) // e
     print("d = ", d)
 
-    # M = (c ** d) % n
+    # C,d,nからMを計算
     M = pow(int(c), int(d), int(n))
     print("M = ", M)
 
@@ -32,4 +33,6 @@ def calc_message(p, q, e, c):
 
 if __name__ == "__main__":
     M = calc_message(p, q, e, c)
-    part1.number_to_alphabet(str(M))
+    # アルファベットに変換(問題1のアルファベット変換関数を利用)
+    word_M = part1.number_to_alphabet(str(M))
+    print(word_M)
